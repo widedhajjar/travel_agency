@@ -7,9 +7,9 @@ public class Temperature {
     public ArrayList<TemperatureDay> temperatures;
 
 
-    public Temperature(String country, ArrayList<TemperatureDay> temperatures) {
+    public Temperature(String country) {
         this.country = country;
-        this.temperatures = temperatures;
+        this.temperatures = new ArrayList<>();
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 @RestController
@@ -16,18 +17,12 @@ public class PingController {
         return "OK";
     }
 
-    @GetMapping(path = "/temperature")
-    public Object temperature(@RequestParam String country){
+    @GetMapping(path = "/api/temperature")
+    public Temperature temperature(@RequestParam String country) throws IOException {
         final TemperatureService temperatureService = new TemperatureService();
-        ArrayList<TemperatureDay> tempList= new ArrayList<>();
-        try{
-            tempList.add(new TemperatureDay("2021-12-04", temperatureService.getTemperature(country)));
-            tempList.add(new TemperatureDay("2021-12-05", temperatureService.getTemperature(country)));
-            return new Temperature(country, tempList);
-        }catch (UnknownCountryException error){
-            return new ResponseEntity<>(error.getMessage(),HttpStatus.EXPECTATION_FAILED);
+        Temperature temperature = new Temperature(country);
+            temperature.temperatures.add(new TemperatureDay("2021-12-04", temperatureService.getTemperature(country)));
+            temperature.temperatures.add(new TemperatureDay("2021-12-05", temperatureService.getTemperature(country)));
+            return temperature;
         }
-    }
-
-
 }
