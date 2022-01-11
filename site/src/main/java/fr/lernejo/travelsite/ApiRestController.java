@@ -18,9 +18,9 @@ public class ApiRestController {
 
     @PostMapping("/api/inscription")
     public @ResponseBody Iterable<Registry> register_user(@RequestBody Registry user){
-
         return this.serviceApi.register_user(user);
     }
+    
     @GetMapping("/api/travels")
     public @ResponseBody
     Object get_dest(@RequestParam String userName){
