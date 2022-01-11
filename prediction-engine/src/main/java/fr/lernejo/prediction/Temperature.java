@@ -3,8 +3,8 @@ package fr.lernejo.prediction;
 import java.util.ArrayList;
 
 public class Temperature {
-    public String country;
-    public ArrayList<TemperatureDay> temperatures;
+    public final String country;
+    public final ArrayList<TemperatureDay> temperatures;
 
 
     public Temperature(String country) {
