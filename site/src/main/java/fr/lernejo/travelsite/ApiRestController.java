@@ -4,23 +4,27 @@ package fr.lernejo.travelsite;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
 public class ApiRestController {
 
-    public final ArrayList<Registry> ListRegistry = new ArrayList<>();
+    //public final ArrayList<Registry> ListRegistry = new ArrayList<>();
+    public final PredictionEngineClient predictionEngineClient = new Launcher().predictionEngineClient();
+    public final ServiceApi serviceApi = new ServiceApi((List<String>) this.predictionEngineClient);
+
 
 
     @PostMapping("/api/inscription")
-    public void addInscription (@RequestBody Registry user){
-        ListRegistry.add(user);
-    }
+    public @ResponseBody Iterable<Registry> register_user(@RequestBody Registry user){
 
+        return this.serviceApi.register_user(user);
+    }
     @GetMapping("/api/travels")
-    public ArrayList<Country> getTravels(@RequestParam String userName){
-        ArrayList<Country> list = new ArrayList<>();
-        list.add(new Country("China",32.2));
-        return list;
+    public @ResponseBody
+    Object get_dest(@RequestParam String userName){
+        return this.serviceApi.get_dest(userName);
+
     }
 }

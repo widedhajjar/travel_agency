@@ -1,6 +1,7 @@
 package fr.lernejo.travelsite;
 
 public class Country {
+
     public String country;
     public Number temperature;
 
