@@ -7,19 +7,19 @@ import java.util.ArrayList;
 
 
 @RestController
-@RequestMapping(path= "/api")
+
 public class ApiRestController {
 
-    public final ArrayList<Registry> listRegistry = new ArrayList<>();
+    public final ArrayList<Registry> ListRegistry = new ArrayList<>();
 
 
     @PostMapping("/api/inscription")
     public void addInscription (@RequestBody Registry user){
-        listRegistry.add(user);
+        ListRegistry.add(user);
     }
 
-    @GetMapping("/travels")
-    public ArrayList<Country> travels(@RequestParam String userName){
+    @GetMapping("api/travels")
+    public ArrayList<Country> getTravels(@RequestParam String userName){
         ArrayList<Country> list = new ArrayList<>();
         list.add(new Country("China",32.2));
         return list;

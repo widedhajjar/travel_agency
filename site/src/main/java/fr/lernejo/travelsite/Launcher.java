@@ -17,7 +17,6 @@ public class Launcher {
     PredictionEngineClient predictionEngineClient() {
         Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://localhost:7080/")
-            .addConverterFactory(JacksonConverterFactory.create())
             .build();
 
         return retrofit.create(PredictionEngineClient.class);
